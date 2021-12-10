@@ -18,12 +18,11 @@
     "middy": "^0.36.0",
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.15"
-  },
-  "devDependencies": {
+    "nodemon": "^2.0.15",
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.0",
     "@babel/node": "^7.16.0",
     "@babel/preset-env": "^7.16.4"
-  }
+  },
+  "devDependencies": {}
 }
