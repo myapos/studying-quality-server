@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const protected = require("./protected");
+const secret = require("./secret");
 
 /* GET home page. */
-router.get("/protected", function (req, res, next) {
-  protected(req, res, next);
+router.get("/secret", function (req, res, next) {
+  secret(req, res, next);
 });
 
 module.exports = router;

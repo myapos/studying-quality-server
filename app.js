@@ -1,3 +1,4 @@
+require("dotenv").config();
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -6,6 +7,7 @@ const logger = require("morgan");
 const authMiddleware = require("./middleware/authMiddleware");
 
 const publicRouter = require("./publicRoutes/index");
+const protectedRouter = require("./protectedRoutes/index");
 
 const app = express();
 
@@ -15,12 +17,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use("/", publicRouter);
+app.use(authMiddleware);
+app.use("/", protectedRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
 });
-app.use(authMiddleware);
+
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
