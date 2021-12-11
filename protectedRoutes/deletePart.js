@@ -1,7 +1,7 @@
 var mysql = require("mysql");
 var DB = require("../helpers/db");
 
-const createPart = async (req, res, next) => {
+const deletePart = async (req, res, next) => {
   console.log(
     "DB",
     DB,
@@ -23,23 +23,18 @@ const createPart = async (req, res, next) => {
 
   connection.connect();
 
-  const { procedure_step, variable } = req.body;
+  console.log("req", req);
 
-  const sql =
-    "INSERT INTO System_parts (procedure_step, variable) VALUES ('" +
-    procedure_step +
-    "', '" +
-    variable +
-    "')";
-
-  console.log("sql", sql);
+  const { system_part_ids } = req.body;
+  const sql = `DELETE FROM System_parts WHERE system_part_id IN (${system_part_ids.join(
+    ","
+  )})`;
 
   await connection.query(sql, function (err, result) {
     if (err) throw err;
-
     // console.log("1 record deleted", result);
     res.send({ ...result });
   });
 };
 
-module.exports = createPart;
+module.exports = deletePart;
