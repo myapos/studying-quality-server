@@ -24,10 +24,12 @@ const deleteFailures = async (req, res, next) => {
 
   connection.connect();
 
-  const { possible_failure_id } = req.body;
+  const { possible_failure_ids } = req.body;
 
-  //var sql = "INSERT INTO System_parts (system_part_id, procedure_step, variable) VALUES ('"+system_part_id+"', '"+procedure_step+"', '"+variable+"')";
-  const sql = `DELETE FROM Possible_failures WHERE possible_failure_id = '${possible_failure_id}'`;
+  const sql = `DELETE FROM Possible_failures WHERE possible_failure_id IN (${possible_failure_ids.join(
+    ","
+  )})`;
+
   await connection.query(sql, function (err, result) {
     if (err) throw err;
     // console.log("1 record deleted", result);

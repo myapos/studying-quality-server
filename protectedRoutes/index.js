@@ -5,7 +5,7 @@ const getSystemParts = require("./parts/getSystemParts");
 const deletePart = require("./parts/deletePart");
 const createPart = require("./parts/createPart");
 const getFailures = require("./failures/getFailures");
-const createFailures = require("./failures/createFailures");
+const createFailure = require("./failures/createFailure");
 const deleteFailures = require("./failures/deleteFailures");
 
 /* GET secrete page. */
@@ -29,8 +29,8 @@ router.get("/getFailures", function (req, res, next) {
   getFailures(req, res, next);
 });
 
-router.post("/createFailures", function (req, res, next) {
-  createFailures(req, res, next);
+router.post("/createFailure", function (req, res, next) {
+  createFailure(req, res, next);
 });
 
 router.delete("/deleteFailures", function (req, res, next) {
