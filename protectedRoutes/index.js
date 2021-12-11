@@ -1,9 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const secret = require("./secret");
-const getSystemParts = require("./getSystemParts");
-const deletePart = require("./deletePart");
-const createPart = require("./createPart");
+const getSystemParts = require("./parts/getSystemParts");
+const deletePart = require("./parts/deletePart");
+const createPart = require("./parts/createPart");
+const getFailures = require("./failures/getFailures");
+const createFailure = require("./failures/createFailure");
+const deleteFailures = require("./failures/deleteFailures");
 
 /* GET secrete page. */
 router.get("/secret", function (req, res, next) {
@@ -20,6 +23,18 @@ router.delete("/deletePart", function (req, res, next) {
 
 router.post("/createPart", function (req, res, next) {
   createPart(req, res, next);
+});
+
+router.get("/getFailures", function (req, res, next) {
+  getFailures(req, res, next);
+});
+
+router.post("/createFailure", function (req, res, next) {
+  createFailure(req, res, next);
+});
+
+router.delete("/deleteFailures", function (req, res, next) {
+  deleteFailures(req, res, next);
 });
 
 module.exports = router;

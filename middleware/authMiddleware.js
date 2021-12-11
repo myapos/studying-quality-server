@@ -11,8 +11,6 @@ const authMiddleware = (req, res, next) => {
     console.log("authHeader", authHeader);
     const token = authHeader.split(" ")[1];
     console.log("token received: ", token);
-    // log(req.query);
-    // log(req.body);
     // decode token
     if (token) {
       // verifies secret and checks exp
