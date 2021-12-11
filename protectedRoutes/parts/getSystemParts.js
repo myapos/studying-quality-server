@@ -1,5 +1,5 @@
 var mysql = require("mysql");
-var DB = require("../helpers/db");
+var DB = require("helpers/db");
 /* GET system parts. */
 const getSystemParts = async (req, res, next) => {
   console.log(

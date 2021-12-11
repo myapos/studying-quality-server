@@ -1,7 +1,8 @@
 var mysql = require("mysql");
-var DB = require("../helpers/db");
+var DB = require("helpers/db");
 
-const deletePart = async (req, res, next) => {
+/* GET failures. */
+const createFailures = async (req, res, next) => {
   console.log(
     "DB",
     DB,
@@ -23,18 +24,18 @@ const deletePart = async (req, res, next) => {
 
   connection.connect();
 
-  console.log("req", req);
+  const { failure_description, system_part_id } = req.body;
 
-  const { system_part_ids } = req.body;
-  const sql = `DELETE FROM System_parts WHERE system_part_id IN (${system_part_ids.join(
-    ","
-  )})`;
+  const sql = `INSERT INTO Possible_failures (failure_description, system_part_id)
+     VALUES ('${failure_description}', '${system_part_id}')`;
 
   await connection.query(sql, function (err, result) {
     if (err) throw err;
-    // console.log("1 record deleted", result);
-    res.send({ ...result });
+    // console.log("1 record inserted", result);
+
+    res.json({ ...result });
   });
+  connection.end();
 };
 
-module.exports = deletePart;
+module.exports = createFailures;
