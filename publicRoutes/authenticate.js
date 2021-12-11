@@ -54,7 +54,7 @@ const authenticate = async (req, res, next) => {
           admin: "admin",
         };
 
-        const token = jwt.sign(payload, "agkistri", {
+        const token = jwt.sign(payload, process.env.JWT_SECRET, {
           expiresIn: 21600, // expires in 6 hours --> 86400 secs
         });
 
@@ -63,7 +63,7 @@ const authenticate = async (req, res, next) => {
         res.json({
           success: true,
           message: "Enjoy your token!",
-          token: token,
+          jwt: token,
         });
       } else {
         //go away

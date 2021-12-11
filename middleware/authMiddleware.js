@@ -16,7 +16,7 @@ const authMiddleware = (req, res, next) => {
     // decode token
     if (token) {
       // verifies secret and checks exp
-      jwt.verify(token, "agkistri", function (err, decoded) {
+      jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {
         if (err) {
           return res.json({
             message: "Failed to authenticate token.",
@@ -35,11 +35,11 @@ const authMiddleware = (req, res, next) => {
         message: "Invalid token.",
       });
     }
+  } else {
+    return res.status(403).send({
+      message: "No token provided.",
+    });
   }
-
-  return res.status(403).send({
-    message: "No token provided.",
-  });
 };
 
 module.exports = authMiddleware;
