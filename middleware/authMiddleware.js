@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const authMiddleware = (req, res, next) => {
   console.log("Time:", Date.now());
-  // log(req);
+  console.log(req);
   // check header or url parameters or post parameters for token
   var authHeader = req.headers["authorization"];
 
