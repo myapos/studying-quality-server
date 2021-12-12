@@ -26,7 +26,7 @@ const deleteEffects = async (req, res, next) => {
 
   const { possible_effect_ids } = req.body;
 
-  const sql = `DELETE FROM Possible_failures WHERE possible_failure_id IN (${possible_effect_ids.join(
+  const sql = `DELETE FROM Possible_effects WHERE possible_effect_id IN (${possible_effect_ids.join(
     ","
   )})`;
 

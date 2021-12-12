@@ -24,14 +24,12 @@ const getEffects = async (req, res, next) => {
 
   connection.connect();
 
-  const sql = `SELECT Possible_failures.possible_failure_id,
-       Possible_failures.failure_description,
-       Possible_failures.system_part_id,
-       System_parts.procedure_step,
-       System_parts.variable
-    FROM Possible_failures
-    LEFT JOIN System_parts ON Possible_failures.system_part_id = System_parts.system_part_id`;
-
+  const sql = `SELECT Possible_effects.possible_effect_id,
+     Possible_effects.effect_description,
+     Possible_effects.possible_failure_id,
+     Possible_failures.failure_description AS failure_description
+  FROM Possible_effects
+  LEFT JOIN Possible_failures ON Possible_effects.possible_failure_id = Possible_failures.possible_failure_id`;
   await connection.query(sql, function (err, result) {
     if (err) throw err;
 

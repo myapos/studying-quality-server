@@ -49,7 +49,7 @@ router.post("/createEffect", function (req, res, next) {
 });
 
 router.delete("/deleteEffects", function (req, res, next) {
-  deleteEffect(req, res, next);
+  deleteEffects(req, res, next);
 });
 
 module.exports = router;
