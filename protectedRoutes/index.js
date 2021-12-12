@@ -7,6 +7,9 @@ const createPart = require("./parts/createPart");
 const getFailures = require("./failures/getFailures");
 const createFailure = require("./failures/createFailure");
 const deleteFailures = require("./failures/deleteFailures");
+const getEffects = require("./effects/getEffects");
+const createEffect = require("./effects/createEffect");
+const deleteEffects = require("./effects/deleteEffects");
 
 /* GET secrete page. */
 router.get("/secret", function (req, res, next) {
@@ -35,6 +38,18 @@ router.post("/createFailure", function (req, res, next) {
 
 router.delete("/deleteFailures", function (req, res, next) {
   deleteFailures(req, res, next);
+});
+
+router.get("/getEffects", function (req, res, next) {
+  getEffects(req, res, next);
+});
+
+router.post("/createEffect", function (req, res, next) {
+  createEffect(req, res, next);
+});
+
+router.delete("/deleteEffects", function (req, res, next) {
+  deleteEffects(req, res, next);
 });
 
 module.exports = router;
