@@ -18,7 +18,12 @@ const getCauses = require("./causes/getCauses");
 const createCauses = require("./causes/createCauses");
 const deleteCauses = require("./causes/deleteCauses");
 
-/* GET secrete page. */
+/* checks */
+const getChecks = require("./checks/getChecks");
+const createCheck = require("./checks/createCheck");
+const deleteChecks = require("./checks/deleteChecks");
+
+/* GET secret page. */
 router.get("/secret", function (req, res, next) {
   secret(req, res, next);
 });
@@ -76,6 +81,19 @@ router.post("/createCauses", function (req, res, next) {
 
 router.delete("/deleteCauses", function (req, res, next) {
   deleteCauses(req, res, next);
+});
+
+/* checks */
+router.get("/getChecks", function (req, res, next) {
+  getChecks(req, res, next);
+});
+
+router.post("/createCheck", function (req, res, next) {
+  createCheck(req, res, next);
+});
+
+router.delete("/deleteChecks", function (req, res, next) {
+  deleteChecks(req, res, next);
 });
 
 module.exports = router;
