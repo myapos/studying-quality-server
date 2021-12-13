@@ -27,6 +27,7 @@ const deleteChecks = async (req, res, next) => {
   const { available_check_ids } = req.body;
 
   const sql = `DELETE FROM Available_checks WHERE available_check_id IN (${available_check_ids.join(
+
     ","
   )})`;
 
