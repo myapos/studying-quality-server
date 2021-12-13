@@ -67,7 +67,7 @@ const authenticate = async (req, res, next) => {
         });
       } else {
         //go away
-        res.status(404).send("Something bad happened,testtt123");
+        res.status(404).send({ message: "Wrong credentials" });
       }
     });
 
