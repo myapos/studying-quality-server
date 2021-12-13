@@ -24,9 +24,10 @@ const deleteChecks = async (req, res, next) => {
 
   connection.connect();
 
-  const { possible_checks_ids } = req.body;
+  const { available_check_ids } = req.body;
 
-  const sql = `DELETE FROM Available_checks WHERE available_check_id IN (${possible_checks_ids.join(
+  const sql = `DELETE FROM Available_checks WHERE available_check_id IN (${available_check_ids.join(
+
     ","
   )})`;
 
