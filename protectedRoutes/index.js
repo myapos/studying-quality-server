@@ -23,6 +23,9 @@ const getChecks = require("./checks/getChecks");
 const createCheck = require("./checks/createCheck");
 const deleteChecks = require("./checks/deleteChecks");
 
+/* FMEA */
+const getFmeaScores = require("./fmea/getFmeaScores");
+
 /* GET secret page. */
 router.get("/secret", function (req, res, next) {
   secret(req, res, next);
@@ -94,6 +97,12 @@ router.post("/createCheck", function (req, res, next) {
 
 router.delete("/deleteChecks", function (req, res, next) {
   deleteChecks(req, res, next);
+});
+
+/* FMEA */
+
+router.get("/getFmeaScores", function (req, res, next) {
+  getFmeaScores(req, res, next);
 });
 
 module.exports = router;
