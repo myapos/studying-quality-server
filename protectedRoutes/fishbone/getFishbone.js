@@ -1,5 +1,6 @@
 var mysql = require("mysql");
 var DB = require("helpers/db");
+var _ = require("lodash");
 var { buildFishboneJsonData } = require("./buildFishboneJsonData");
 /* GET fishbone. */
 const getFishbone = async (req, res, next) => {
@@ -61,10 +62,42 @@ GROUP BY System_parts.system_part_id,
       console.log("filteredFishboneData", filteredFishboneData);
       console.log("JsonData", JsonData);
 
+      /**
+       * process data and return fishbone ready data
+       **/
+
+      /* step 1 group by procedure step */
+      const firstParsing = _.groupBy(joinedData, (item) => {
+        return item.procedure_step;
+      });
+
+      const grouped = {};
+
+      /**
+       *  step 2
+       * - group by variable
+       * - and keep only the effect description
+       */
+
+      Object.keys(firstParsing).forEach((step) => {
+        const secondParsing = _.groupBy(firstParsing[step], (item) => {
+          return item.variable;
+        });
+
+        let temp;
+
+        Object.keys(secondParsing).forEach((key) => {
+          temp = secondParsing[key].map((item) => item.effect_description);
+
+          /* remove duplicates from the array */
+          secondParsing[key] = _.uniq(temp);
+        });
+
+        grouped[step] = secondParsing;
+      });
+
       res.json({
-        steps,
-        joinedData,
-        JsonData,
+        fishbone: grouped,
       });
     });
 
