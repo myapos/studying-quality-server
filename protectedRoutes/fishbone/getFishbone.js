@@ -47,8 +47,6 @@ GROUP BY System_parts.system_part_id,
     await connection.query(sql1, (err1, joinedData) => {
       if (err1) throw err1;
 
-      console.log("Got fishbone data");
-
       let filteredFishboneData = steps.map((varItem) => {
         let filteredItems = joinedData.filter((item) => {
           return item.procedure_step === varItem.procedure_step;
@@ -90,7 +88,7 @@ GROUP BY System_parts.system_part_id,
 
         grouped[step] = secondParsing;
       });
-
+      console.log("Send fishbone data");
       res.json({
         fishbone: grouped,
       });
