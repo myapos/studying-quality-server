@@ -1,7 +1,6 @@
 var mysql = require("mysql");
 var DB = require("helpers/db");
 var _ = require("lodash");
-var { buildFishboneJsonData } = require("./buildFishboneJsonData");
 /* GET fishbone. */
 const getFishbone = async (req, res, next) => {
   console.log(
@@ -57,10 +56,6 @@ GROUP BY System_parts.system_part_id,
 
         return filteredItems;
       });
-
-      const JsonData = buildFishboneJsonData(filteredFishboneData);
-      console.log("filteredFishboneData", filteredFishboneData);
-      console.log("JsonData", JsonData);
 
       /**
        * process data and return fishbone ready data
