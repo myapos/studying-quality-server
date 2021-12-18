@@ -26,8 +26,11 @@ const deleteChecks = require("./checks/deleteChecks");
 /* FMEA */
 const getFmeaScores = require("./fmea/getFmeaScores");
 
-/* FMEA */
+/* Fishbone */
 const getFishbone = require("./fishbone/getFishbone");
+
+/* Severity */
+const getSeverity = require("./severity/getSeverity");
 
 /* GET secret page. */
 router.get("/secret", function (req, res, next) {
@@ -112,6 +115,11 @@ router.get("/getFmeaScores", function (req, res, next) {
 
 router.get("/getFishbone", function (req, res, next) {
   getFishbone(req, res, next);
+});
+
+/* Severity */
+router.get("/getSeverity", function (req, res, next) {
+  getSeverity(req, res, next);
 });
 
 module.exports = router;
