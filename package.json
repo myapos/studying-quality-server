@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "NODE_PATH=src/ nodemon --exec node_modules/.bin/babel-node ./bin/www",
+    "start:prod": "NODE_PATH=src/ node  node_modules/.bin/babel-node ./bin/www",
     "clean:install": "rm -rf node_modules && npm cache clean --force && npm install"
   },
   "dependencies": {
