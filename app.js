@@ -11,6 +11,7 @@ const bodyParser = require("body-parser");
 
 const publicRouter = require("./publicRoutes/index");
 const protectedRouter = require("./protectedRoutes/index");
+const { BASE_API_PATH } = require("./constants");
 
 const app = express();
 app.use(cors());
@@ -20,9 +21,9 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use("/", publicRouter);
+app.use(`${BASE_API_PATH}`, publicRouter);
 app.use(authMiddleware);
-app.use("/", protectedRouter);
+app.use(`${BASE_API_PATH}`, protectedRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
